@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7cb43c44fb648f9af6c3e42d42da17, type: 3}
+  m_Name: Default Game Config
+  m_EditorClassIdentifier: 
+  minShareQty: 1000
+  maxShareQty: 2000
+  randomA: 0.2
+  companies:
+  - {fileID: 11400000, guid: f40dac65314a24e568c7cc749876ed28, type: 2}
+  - {fileID: 11400000, guid: 7d66c406f1a054ec99afb56fd1af32ab, type: 2}
+  - {fileID: 11400000, guid: 5382185a3ef1f4d5fa2f681a6fab561e, type: 2}
+  - {fileID: 11400000, guid: a9cf74fb5b9f8427a83e70d7b4b80f97, type: 2}
+  - {fileID: 11400000, guid: 7f54813cae89e402cb645e4eef23a1d4, type: 2}
+  - {fileID: 11400000, guid: 4fd082c06299e4a9888be9fd419c0f17, type: 2}
+  - {fileID: 11400000, guid: af974536e30e64743b3e03fa5d48e73d, type: 2}
+  - {fileID: 11400000, guid: 01c28545ff8494c60a5db4f3cb542f48, type: 2}
+  - {fileID: 11400000, guid: ebe62021b5e03441d9e4035f9fc4db4f, type: 2}
+  - {fileID: 11400000, guid: a7c13f409a42249589fc51bedf6ef224, type: 2}
+  - {fileID: 11400000, guid: 6f27e0092c6854d41b834e752579c7d4, type: 2}
+  Bots:
+  - {fileID: 11400000, guid: 127b7283166754a5998cb67d83cc4afc, type: 2}
+  - {fileID: 11400000, guid: 764788de80b624e92b0d3a666af31719, type: 2}
+  - {fileID: 11400000, guid: 8aa037501fe4e4973bcf38563fbdd677, type: 2}
+  - {fileID: 11400000, guid: f853d2e611aa64649812bea7cd7090cb, type: 2}
+  - {fileID: 11400000, guid: c4d9443c02f7e4bc7a61a3790d6cfa6f, type: 2}
+  - {fileID: 11400000, guid: db05952068e3441bc94a9ce80f619fa0, type: 2}
+  - {fileID: 11400000, guid: ce1e32486a18d4b4d97bfece68435036, type: 2}
+  - {fileID: 11400000, guid: 4453d2513ae984698ac93d88835a50ff, type: 2}
+  - {fileID: 11400000, guid: d04b87d229b314e06a4bd4ec5015ae65, type: 2}
+  - {fileID: 11400000, guid: 27975dbd2c54f41a1b1065917dc2c2c3, type: 2}
+  player: {fileID: 11400000, guid: cb62f92de3025498bb966957df37f4af, type: 2}
+  startValue: 5
+  updateInterval: 5
+  PlayerSpeed: 35
+  PlayerTurnSmooth: 0.1
+  PlayerStartingMoney: 100
+  PlayerStartingName: TestPlayer
