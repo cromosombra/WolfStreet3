@@ -2,7 +2,8 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class ScreenUISetter : MonoBehaviour
+//Should be renamed to ScreenView
+public class ScreenUISetter : ViewBase
 {
     
     [SerializeField]
@@ -17,28 +18,48 @@ public class ScreenUISetter : MonoBehaviour
     SpriteRenderer thelogo2;
     
     public string islandCompany;
+    private Company currentData;
+
+    public Company CurrentData
+    {
+        get => currentData;
+        set
+        {
+            currentData = value;
+            ReDraw();
+        } 
+    }
 
     void Awake()
     {
-       //CompanyExtension.valuesetterdelegate = SetUI;
+        //ParInitializer.companyCreated = SetUI;
     }
-    public void SetUI(Company company)
+    public void SetUIModel(CompanyModel companyModel)
     {
-        //Debug.Log($"{company.pName} {islandCompany} ");
+        CurrentData = companyModel.GetData();
+        companyModel.modelChanged += ModelChanged;
+    }
+
+    private void ModelChanged(Company data)
+    {
+        CurrentData = data;
+    }
+
+    public override void ReDraw()
+    {
         foreach (var nombre in nombres)
         {
-            nombre.text = company.pName;
+            nombre.text = currentData.pName;
         }
         foreach (var quantity in cantidades)
         {
-            quantity.text = company.shares.First().Value.shareQuantity.ToString();
+            quantity.text = currentData.shares.First().Value.shareQuantity.ToString();
         }
         foreach (var theprice in cantidades)
         {
-            theprice.text = company.value.ToString();
-            thelogo.sprite = company.avatar;
-            thelogo2.sprite = company.avatar;
+            theprice.text = currentData.value.ToString();
+            thelogo.sprite = currentData.avatar;
+            thelogo2.sprite = currentData.avatar;
         }
     }
-
 }

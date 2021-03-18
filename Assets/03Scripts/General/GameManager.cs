@@ -22,8 +22,18 @@ public class GameManager : MonoBehaviour
 
     public List<ScreenUISetter> islands;
 
+
+
+    public ModelsController modelsController;
+    public ViewController viewController;
+
     private void Awake()
     {
+        instance = this;
+        if (modelsController == null)
+            modelsController = GetComponent<ModelsController>();
+        if (viewController == null)
+            viewController = GetComponent<ViewController>();
         config = Instantiate(configobject);
 
         companieslist = config.Companies;
@@ -51,13 +61,23 @@ public class GameManager : MonoBehaviour
 
     private void InitializeGame()
     {
-        companies = ParInitializer.InitializeCompanies(companieslist);
+        /*companies = ParInitializer.InitializeCompanies(companieslist);
         foreach (var company in companies)
         {
             var screenUis = islands.First(x => x.islandCompany.Equals(company.pName));
-            if (screenUis != null)
-                screenUis.SetUI(company);
+            //if (screenUis != null)
+            //    screenUis.SetUI(company);
+        }*/
+
+        foreach (var company in companieslist)
+        {
+            var companyModel = CompanyModel.CreateCompanyModel(company);
+            modelsController.models.Add(companyModel);
+            var view = islands.First(x => x.islandCompany == companyModel.GetModelName());
+            view.SetUIModel(companyModel);
+            viewController.views.Add(view);
         }
+
         bots = ParInitializer.InitializeBots(config.Bots);
         player = ParInitializer.InitializePlayer(config.player);
     }

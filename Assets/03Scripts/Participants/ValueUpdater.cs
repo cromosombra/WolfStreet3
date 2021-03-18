@@ -12,14 +12,14 @@ public class ValueUpdater : MonoBehaviour
     }
     void Update()
     {
-       
         if (timer <= 0)
         {
-            foreach (var company in GameManager.companies)
+            foreach (var company in GameManager.Instance.modelsController.models)
             {
-                company.SetCompanyValue();
-
-                print(company.value);
+                var compModel = (CompanyModel)company;
+                compModel.SetData(compModel.GetData().SetCompanyValue());
+                Debug.Log($"changed {compModel.GetData().pName} stock price to {compModel.GetData().value}");
+                compModel.OnModelChanged();
             }
            
             timer = GameManager.config.updateInterval;
