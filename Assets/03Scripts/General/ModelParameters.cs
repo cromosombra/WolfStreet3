@@ -4,8 +4,13 @@ using UnityEngine;
 
 public abstract class ModelParameters<T> : IModelParameters
 {
-    private T data;
-    
+    protected T data;
+
+    protected virtual bool Equals(T other)
+    {
+        return data.GetHashCode().Equals(other.GetHashCode());
+    }
+
     public bool Equals(IModelParameters other)
     {
         if (other is T)
