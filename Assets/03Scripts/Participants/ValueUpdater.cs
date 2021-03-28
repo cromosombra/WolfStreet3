@@ -1,30 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class ValueUpdater : MonoBehaviour
+public class ValueUpdater
 {
-    float timer;
-
-    private void Start()
+    internal void UpdateCompaniesValues()
     {
-        timer = GameManager.config.updateInterval;
-    }
-    void Update()
-    {
-        if (timer <= 0)
+        foreach (var company in GameManager.Instance.companiesController.models)
         {
-            foreach (var company in GameManager.Instance.modelsController.models)
-            {
-                var compModel = (CompanyModel)company;
-                compModel.SetData(compModel.GetData().SetCompanyValue());
-                Debug.Log($"changed {compModel.GetData().pName} stock price to {compModel.GetData().value}");
-                compModel.OnModelChanged();
-            }
-           
-            timer = GameManager.config.updateInterval;
+            var compModel = (CompanyModel)company;
+            compModel.SetData(compModel.GetData().SetCompanyValue());
+            Debug.Log($"Changed {compModel.GetData().pName} stock price to {compModel.GetData().value}");
+            compModel.OnModelChanged();
         }
-        else
-            timer -= Time.deltaTime;
+    }
+
+    internal void UpdateCompaniesMoney()
+    {
+        foreach (var company in GameManager.Instance.companiesController.models)
+        {
+            var compModel = (CompanyModel)company;
+            var data = compModel.GetData();
+            data.money += Random.Range(-1f, 1f);
+            compModel.SetData(data);
+            Debug.Log($"Changed {compModel.GetData().pName} money to {compModel.GetData().money}");
+            compModel.OnModelChanged();
+        }
     }
 }

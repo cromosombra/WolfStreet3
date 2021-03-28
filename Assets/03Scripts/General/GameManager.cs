@@ -24,16 +24,16 @@ public class GameManager : MonoBehaviour
 
 
 
-    public ModelsController modelsController;
-    public ViewController viewController;
+    public CompaniesController companiesController;
+    public ViewContainer viewContainer;
 
     private void Awake()
     {
         instance = this;
-        if (modelsController == null)
-            modelsController = GetComponent<ModelsController>();
-        if (viewController == null)
-            viewController = GetComponent<ViewController>();
+        if (companiesController == null)
+            companiesController = GetComponent<CompaniesController>();
+        if (viewContainer == null)
+            viewContainer = GetComponent<ViewContainer>();
         config = Instantiate(configobject);
 
         companieslist = config.Companies;
@@ -72,10 +72,10 @@ public class GameManager : MonoBehaviour
         foreach (var company in companieslist)
         {
             var companyModel = CompanyModel.CreateCompanyModel(company);
-            modelsController.models.Add(companyModel);
+            companiesController.models.Add(companyModel);
             var view = islands.First(x => x.islandCompany == companyModel.GetModelName());
             view.SetUIModel(companyModel);
-            viewController.views.Add(view);
+            viewContainer.AddItem(view);
         }
 
         bots = ParInitializer.InitializeBots(config.Bots);
